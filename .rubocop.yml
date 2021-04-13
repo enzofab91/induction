@@ -1,0 +1,4 @@
+inherit_gem:
+  rubocop-rootstrap:
+    - config/rails.yml
+    
