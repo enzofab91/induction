@@ -30,6 +30,8 @@ group :development do
   gem 'rails_best_practices'
 
   gem 'brakeman'
+
+  gem 'annotate'
 end
 
 group :test do
