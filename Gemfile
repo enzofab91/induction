@@ -47,6 +47,8 @@ group :development do
   gem 'rubocop-rails', require: false
   
   gem 'reek'
+
+  gem 'rails_best_practices'
 end
 
 group :test do

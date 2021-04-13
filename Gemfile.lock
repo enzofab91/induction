@@ -77,9 +77,12 @@ GEM
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
     childprocess (3.0.0)
+    code_analyzer (0.5.2)
+      sexp_processor
     concurrent-ruby (1.1.8)
     crass (1.0.6)
     erubi (1.10.0)
+    erubis (2.7.0)
     ffi (1.15.0)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
@@ -87,6 +90,7 @@ GEM
       concurrent-ruby (~> 1.0)
     jbuilder (2.11.2)
       activesupport (>= 5.0.0)
+    json (2.5.1)
     kwalify (0.7.2)
     listen (3.5.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
@@ -140,6 +144,14 @@ GEM
       nokogiri (>= 1.6)
     rails-html-sanitizer (1.3.0)
       loofah (~> 2.3)
+    rails_best_practices (1.20.0)
+      activesupport
+      code_analyzer (>= 0.5.1)
+      erubis
+      i18n
+      json
+      require_all (~> 3.0)
+      ruby-progressbar
     railties (6.1.3.1)
       actionpack (= 6.1.3.1)
       activesupport (= 6.1.3.1)
@@ -157,6 +169,7 @@ GEM
       psych (~> 3.1)
       rainbow (>= 2.0, < 4.0)
     regexp_parser (2.1.1)
+    require_all (3.0.0)
     rexml (3.2.5)
     rubocop (1.12.1)
       parallel (~> 1.10)
@@ -191,6 +204,7 @@ GEM
       childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
     semantic_range (3.0.0)
+    sexp_processor (4.15.2)
     spring (2.1.1)
     sprockets (4.0.2)
       concurrent-ruby (~> 1.0)
@@ -241,6 +255,7 @@ DEPENDENCIES
   puma (~> 5.0)
   rack-mini-profiler (~> 2.0)
   rails (~> 6.1.3, >= 6.1.3.1)
+  rails_best_practices
   reek
   rubocop-rails
   rubocop-rootstrap
