@@ -4,8 +4,6 @@ module Api
       protect_from_forgery with: :exception
       include Api::Concerns::ActAsApiRequest
 
-      before_action :authenticate_user!, except: :create
-
       private
 
       def sign_up_params

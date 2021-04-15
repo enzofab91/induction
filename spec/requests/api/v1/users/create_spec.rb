@@ -37,11 +37,11 @@ describe 'User Api', type: :request do
 
       expect(response.body).to include_json(
         {
-          status: "success",
+          status: 'success',
           data: {
             email: email,
             gender: gender,
-            provider: "email",
+            provider: 'email',
             uid: email
           }
         }
@@ -70,9 +70,9 @@ describe 'User Api', type: :request do
 
         expect(response.body).to include_json(
           {
-            status: "error",
+            status: 'error',
             errors: {
-              "password_confirmation": ["doesn't match Password"],
+              password_confirmation: ['doesn\'t match Password']
             }
           }
         )
