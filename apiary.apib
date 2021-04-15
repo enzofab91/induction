@@ -1,0 +1,66 @@
+FORMAT: 1A
+# Rails API Target
+
+# Group Users
+
+## Create User [api/v1/users/] [POST]
+
++ Request Bad
+
+    + Headers
+
+            Content-Type: application/json
+
+    + Body
+
+            {
+              "email":"user@example.com",
+              "password":"password",
+              "password_confirmation":"password_not_match",
+              "gender":"M"
+            }
+
++ Response 404 ()
+
+    + Body
+
+              {
+              "status": "error",
+              "errors": {
+                "password_confirmation": [
+                  "doesn't match Password"
+                ],
+                "full_messages": [
+                  "Password confirmation doesn't match Password"
+                ]
+              }
+            }
+
++ Request Ok
+
+    + Headers
+
+            Content-Type: application/json
+
+    + Body
+
+            {
+              "email":"user@example.com",
+              "password":"password",
+              "password_confirmation":"password",
+              "gender":"M"
+            }
+
++ Response 200 ()
+
+    + Body
+
+            {
+              "status": "success"",
+              "data": {
+                "email":"user@example.com",
+                "password":"password",
+                "password_confirmation":"password_not_match",
+                "gender":"M"
+              }
+            }
