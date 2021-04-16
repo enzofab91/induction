@@ -1,9 +1,11 @@
 require 'rails_helper'
 
-describe 'User Api', type: :request do
+describe 'POST api/v1/users/', type: :request do
+  subject { post user_registration_path, params: params, as: :json }
+
   let(:failed_response) { 422 }
 
-  describe 'POST api/v1/users/' do
+  describe 'POST create' do
     let(:email)                 { 'test@test.com' }
     let(:password)              { '12345678' }
     let(:password_confirmation) { '12345678' }
@@ -21,19 +23,19 @@ describe 'User Api', type: :request do
     end
 
     it 'returns a successful response' do
-      post user_registration_path, params: params, as: :json
+      subject
 
-      expect(response).to have_http_status(:success)
+      expect(response).to be_successful
     end
 
     it 'creates the user' do
       expect {
-        post user_registration_path, params: params, as: :json
+        subject
       }.to change(User, :count).by(1)
     end
 
     it 'returns the user' do
-      post user_registration_path, params: params, as: :json
+      subject
 
       expect(response.body).to include_json(
         {
@@ -52,21 +54,21 @@ describe 'User Api', type: :request do
       let(:password_confirmation) { '12345' }
 
       it 'does not return a successful response' do
-        post user_registration_path, params: params, as: :json
+        subject
 
         expect(response.status).to eq(failed_response)
       end
 
       it 'does not create new user' do
-        post user_registration_path, params: params, as: :json
+        subject
 
         expect {
-          post user_registration_path, params: params, as: :json
+          subject
         }.not_to change(User, :count)
       end
 
       it 'returns message error' do
-        post user_registration_path, params: params, as: :json
+        subject
 
         expect(response.body).to include_json(
           {

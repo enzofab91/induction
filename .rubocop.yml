@@ -19,8 +19,7 @@ Layout/HashAlignment:
 Layout/LineLength:
   Exclude:
     - "config/**/*"
-    - db/migrate/20210413180512_add_devise_to_users.rb
-    - db/migrate/20210414141732_add_devise_token_auth_fields_users.rb
+    - db/migrate/**/*
     - db/seeds.rb
 Rails/Delegate:
   Exclude:

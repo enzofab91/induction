@@ -1,9 +1,17 @@
 FORMAT: 1A
 # Rails API Target
 
-# Group Users
+## Data Structures
 
-## Create User [api/v1/users/] [POST]
+### User (object)
++ email: user@example.com (required)
++ password: password (required)
++ password_confirmation: password (required)
++ gender: M (required)
+
+# Group Users [api/v1/users/]
+
+## Sign up User [POST]
 
 + Request Bad
 
@@ -13,14 +21,10 @@ FORMAT: 1A
 
     + Body
 
-            {
-              "email":"user@example.com",
-              "password":"password",
-              "password_confirmation":"password_not_match",
-              "gender":"M"
-            }
+            + Attributes(User)
+            + password_confirmation: password_dont_match
 
-+ Response 404 ()
++ Response 404
 
     + Body
 
@@ -36,7 +40,7 @@ FORMAT: 1A
               }
             }
 
-+ Request Ok
++ Request 200
 
     + Headers
 
@@ -44,14 +48,9 @@ FORMAT: 1A
 
     + Body
 
-            {
-              "email":"user@example.com",
-              "password":"password",
-              "password_confirmation":"password",
-              "gender":"M"
-            }
+            + Attributes(User)
 
-+ Response 200 ()
++ Response 200
 
     + Body
 
