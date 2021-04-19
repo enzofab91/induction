@@ -12,6 +12,8 @@
 #  reset_password_token   :string
 #  tokens                 :json
 #  uid                    :string           default(""), not null
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
 #
 # Indexes
 #
