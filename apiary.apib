@@ -1,0 +1,65 @@
+FORMAT: 1A
+# Rails API Target
+
+## Data Structures
+
+### User (object)
++ email: user@example.com (required)
++ password: password (required)
++ password_confirmation: password (required)
++ gender: M (required)
+
+# Group Users [api/v1/users/]
+
+## Sign up User [POST]
+
++ Request Bad
+
+    + Headers
+
+            Content-Type: application/json
+
+    + Body
+
+            + Attributes(User)
+            + password_confirmation: password_dont_match
+
++ Response 404
+
+    + Body
+
+              {
+              "status": "error",
+              "errors": {
+                "password_confirmation": [
+                  "doesn't match Password"
+                ],
+                "full_messages": [
+                  "Password confirmation doesn't match Password"
+                ]
+              }
+            }
+
++ Request 200
+
+    + Headers
+
+            Content-Type: application/json
+
+    + Body
+
+            + Attributes(User)
+
++ Response 200
+
+    + Body
+
+            {
+              "status": "success"",
+              "data": {
+                "email":"user@example.com",
+                "password":"password",
+                "password_confirmation":"password_not_match",
+                "gender":"M"
+              }
+            }

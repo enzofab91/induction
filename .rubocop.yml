@@ -13,3 +13,24 @@ AllCops:
 Style/StringLiterals:
   Exclude:
     - "config/**/*"
+Layout/HashAlignment:
+  Exclude:
+    - "lib/**/*"
+Layout/LineLength:
+  Exclude:
+    - "config/**/*"
+    - db/migrate/**/*
+    - db/seeds.rb
+Rails/Delegate:
+  Exclude:
+    - app/controllers/api/concerns/act_as_api_request.rb
+Rails/RakeEnvironment:
+  Exclude:
+    - "lib/**/*"
+Metrics/BlockLength:
+  Exclude:
+    - config/**/*
+    - lib/**/*
+Style/SymbolArray:
+  Exclude:
+    - config/**/*

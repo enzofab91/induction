@@ -1,0 +1,66 @@
+name: Rails Test and Quality
+# This workflow is triggered on pushes to the repository.
+on: [push]
+jobs:
+  build:
+    # This job runs on Linux
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:11.5
+        ports: ["5432:5432"]
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+    steps:
+    - uses: actions/checkout@v2
+    # specify the version you desire here
+    # https://github.com/ruby/setup-ruby
+    - name: Set up Ruby 3.0.1
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 3.0.1
+    # Check installed Ruby version
+    - name: Check Ruby version
+      run: |
+        ruby -v
+    - name: Install PostgreSQL 11 client
+      run: |
+        sudo apt-get -yqq install libpq-dev
+    # Download and cache dependencies
+    - uses: actions/cache@v1
+      with:
+        path: vendor/bundle
+        key: bundle-use-ruby-${{ matrix.os }}-${{ matrix.ruby }}-${{ hashFiles('**/Gemfile.lock') }}
+        restore-keys: |
+          bundle-use-ruby-${{ matrix.os }}-${{ matrix.ruby }}-
+    - name: Install Dependencies
+      env:
+        PGHOST: localhost
+        PGUSER: postgres
+        RAILS_ENV: test
+      run: |
+        bundle config path vendor/bundle
+        bundle install --jobs 4 --retry 3
+    # Database setup
+    - run: cp .circleci/database.yml config/database.yml
+    - run: cp .circleci/application.yml config/application.yml
+    - name: Load database
+      env:
+        PGHOST: localhost
+        PGUSER: postgres
+        RAILS_ENV: test
+      run: |
+        bundle exec rake db:create
+        bundle exec rake db:schema:load
+        bundle exec rake db:seed
+    # run tests!
+    - name: Run Tests
+      env:
+        PGHOST: localhost
+        PGUSER: postgres
+        RAILS_ENV: test
+      run: |
+        bundle exec rspec
+    # run code_analysis!
+    - name: Run Code Analysis
+      run: |
+        bundle exec rake code:analysis test
