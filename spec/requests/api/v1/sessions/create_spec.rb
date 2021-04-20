@@ -39,16 +39,10 @@ describe 'POST api/v1/users/sign_in', type: :request do
     it 'returns the user' do
       subject
 
-      expect(response.body).to include_json(
-        {
-          data: {
-            email: user.email,
-            gender: user.gender,
-            provider: 'email',
-            uid: user.email
-          }
-        }
-      )
+      expect(json[:user][:email]).to eq(user.email)
+      expect(json[:user][:gender]).to eq(user.gender)
+      expect(json[:user][:provider]).to eq('email')
+      expect(json[:user][:uid]).to eq(user.email)
     end
 
     it 'returns a valid acces token' do
@@ -60,31 +54,21 @@ describe 'POST api/v1/users/sign_in', type: :request do
 
     context 'when credentials dont match' do
       it 'does not return a successful response' do
-        params = {
-          user: {
-            email: user.email,
-            password: 'wrong_password'
-          }
-        }
+        params[:user][:password] = 'wrong_password!'
 
-        post user_session_path, params: params, as: :json
+        subject
 
         expect(response.status).to eq(failed_response)
       end
 
       it 'returns message error' do
-        params = {
-          user: {
-            email: user.email,
-            password: 'wrong_password'
-          }
-        }
+        params[:user][:password] = 'wrong_password!'
 
-        post user_session_path, params: params, as: :json
+        subject
 
         expect(response.body).to include_json(
           {
-            error: 'Invalid login credentials. Please try again.'
+            error: I18n.t('spec.errors.invalid_login_credentials')
           }
         )
       end
