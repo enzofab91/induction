@@ -9,6 +9,10 @@ FORMAT: 1A
 + password_confirmation: password (required)
 + gender: M (required)
 
+### User_credentials (object)
++ email: user@example.com (required)
++ password: password (required)
+
 # Group Users [api/v1/users/]
 
 ## Sign up User [POST]
@@ -61,5 +65,58 @@ FORMAT: 1A
                 "password":"password",
                 "password_confirmation":"password_not_match",
                 "gender":"M"
+              }
+            }
+
+# Group Sessions [api/v1/users/sign_in]
+
+## Sign in User [POST]
+
++ Request Bad
+
+    + Headers
+
+            Content-Type: application/json
+
+    + Body
+
+            Attributes(User_credentials)
+            + password: wrong-password
+
++ Response 404
+
+    + Body
+
+              {
+              "status": "error",
+              "errors": {
+                "full_messages": [
+                  "Invalid login credentials. Please try again."
+                ]
+              }
+            }
+
++ Request 200
+
+    + Headers
+
+            Content-Type: application/json
+
+    + Body
+
+            + Attributes(User_credentials)
+
++ Response 200
+    + Headers
+
+            Access-Token: valid_token
+    + Body
+
+            {
+              "data": {
+                "email":"user@example.com",
+                "password":"password",
+                "gender":"M",
+                "uid":"user@example.com"
               }
             }

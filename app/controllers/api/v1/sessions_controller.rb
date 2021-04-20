@@ -3,7 +3,8 @@ module Api
     class SessionsController < DeviseTokenAuth::SessionsController
       protect_from_forgery with: :null_session
       include Api::Concerns::ActAsApiRequest
-      include Api::Concerns::SetUserByToken
+
+      private
 
       def resource_params
         params.require(:user).permit(:email, :password)
