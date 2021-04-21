@@ -5,3 +5,9 @@ en:
     errors:
       passwords_dont_match: doesn't match Password
       invalid_login_credentials: Invalid login credentials. Please try again.
+
+api:
+  errors:
+    invalid_content_type: Invalid content type header
+    missing_param: A required param is missing
+    not_found: Couldn't find the record

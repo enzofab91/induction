@@ -1,18 +1,6 @@
 FORMAT: 1A
 # Rails API Target
 
-## Data Structures
-
-### User (object)
-+ email: user@example.com (required)
-+ password: password (required)
-+ password_confirmation: password (required)
-+ gender: M (required)
-
-### User_credentials (object)
-+ email: user@example.com (required)
-+ password: password (required)
-
 # Group Users [api/v1/users/]
 
 ## Sign up User [POST]
@@ -110,6 +98,7 @@ FORMAT: 1A
     + Headers
 
             Access-Token: valid_token
+
     + Body
 
             {
@@ -120,3 +109,53 @@ FORMAT: 1A
                 "uid":"user@example.com"
               }
             }
+
+# Group Topics [api/v1/topics/]
+
+## Get Topics [GET]
+
++ Request Bad
+
+    + Headers
+
+            Content-Type: application/json
+
+    + Body
+
++ Response 401
+
++ Request 200
+
+    + Headers
+
+            Content-Type: application/json
+            access-token: token
+
+    + Body
+
++ Response 200
+
+    + Body
+
+            "topics": [
+                {
+                  "topic": {
+                    "id": 1,
+                    "name": "topic",
+                    "image": "URL"
+                  }
+                }
+              ]
+            }
+
+## Data Structures
+
+### User (object)
++ email: user@example.com (required)
++ password: password (required)
++ password_confirmation: password (required)
++ gender: M (required)
+
+### User_credentials (object)
++ email: user@example.com (required)
++ password: password (required)
