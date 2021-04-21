@@ -9,6 +9,10 @@ module Api
       def sign_up_params
         params.require(:user).permit(:email, :gender, :password, :password_confirmation)
       end
+
+      def render_create_success
+        render json: { user: resource_data }
+      end
     end
   end
 end

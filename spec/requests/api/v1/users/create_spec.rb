@@ -37,17 +37,10 @@ describe 'POST api/v1/users/', type: :request do
     it 'returns the user' do
       subject
 
-      expect(response.body).to include_json(
-        {
-          status: 'success',
-          data: {
-            email: email,
-            gender: gender,
-            provider: 'email',
-            uid: email
-          }
-        }
-      )
+      expect(json[:user][:email]).to eq(email)
+      expect(json[:user][:gender]).to eq(gender)
+      expect(json[:user][:provider]).to eq('email')
+      expect(json[:user][:uid]).to eq(email)
     end
 
     context 'when passwords dont match' do
@@ -74,7 +67,7 @@ describe 'POST api/v1/users/', type: :request do
           {
             status: 'error',
             errors: {
-              password_confirmation: ['doesn\'t match Password']
+              password_confirmation: [I18n.t('spec.errors.passwords_dont_match')]
             }
           }
         )
