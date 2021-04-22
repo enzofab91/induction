@@ -6,15 +6,15 @@ describe 'GET api/v1/topics', type: :request do
 
   subject { get api_v1_topics_path, headers: auth_headers, as: :json }
 
-  it 'returns success' do
+  before do
     subject
+  end
 
-    expect(response).to have_http_status(:success)
+  it 'returns a successful response' do
+    expect(response).to be_successful
   end
 
   it 'returns all topics' do
-    subject
-
     expect(json[:topics].pluck([:name])).to match_array(topics.pluck([:name]))
   end
 end
