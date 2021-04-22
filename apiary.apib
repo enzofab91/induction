@@ -97,7 +97,9 @@ FORMAT: 1A
 + Response 200
     + Headers
 
-            Access-Token: valid_token
+            access-token: valid_token
+            client: client_id
+            uid: user@example.com
 
     + Body
 
@@ -108,6 +110,46 @@ FORMAT: 1A
                 "gender":"M",
                 "uid":"user@example.com"
               }
+            }
+
+# Logout [api/v1/users/sign_out]
+
+## Sign out User [DELETE]
+
++ Request Bad
+
+    + Headers
+
+            Content-Type: application/json
+
+    + Body
+
++ Response 404
+
+    + Body
+
+            {
+              "error": "User was not found or was not logged in."
+            }
+
++ Request 200
+
+    + Headers
+
+            Content-Type: application/json
+            access-token: valid_token
+            client: client_id
+            uid: user@example.com
+
+    + Body
+
++ Response 200
+    + Headers
+
+    + Body
+
+            {
+              "success": true
             }
 
 # Group Topics [api/v1/topics/]
@@ -129,7 +171,9 @@ FORMAT: 1A
     + Headers
 
             Content-Type: application/json
-            access-token: token
+            access-token: valid_token
+            client: client_id
+            uid: user@example.com
 
     + Body
 
