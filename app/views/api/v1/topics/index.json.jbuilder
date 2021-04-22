@@ -1,5 +1,5 @@
 json.topics @topics.each do |topic|
   json.topic do
-    json.partial! 'api/v1/topics/info', topic: topic
+    json.topics @topics, partial: 'api/v1/topics/info', as: :topic
   end
 end
