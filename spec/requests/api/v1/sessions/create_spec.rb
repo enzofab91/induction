@@ -7,6 +7,7 @@ describe 'POST api/v1/users/sign_in', type: :request do
 
   describe 'POST create' do
     let(:password)              { '12345678' }
+    let(:user_password)         { '12345678' }
     let(:gender)                { 'M' }
 
     let(:token) do
@@ -19,7 +20,7 @@ describe 'POST api/v1/users/sign_in', type: :request do
       }
     end
 
-    let(:user) { create(:user, gender: gender, password: password, tokens: token) }
+    let(:user) { create(:user, gender: gender, password: user_password, tokens: token) }
 
     let(:params) do
       {
@@ -53,17 +54,15 @@ describe 'POST api/v1/users/sign_in', type: :request do
     end
 
     context 'when credentials dont match' do
-      it 'does not return a successful response' do
-        params[:user][:password] = 'wrong_password!'
+      let(:password) { 'wrong_password!' }
 
+      it 'does not return a successful response' do
         subject
 
         expect(response.status).to eq(failed_response)
       end
 
       it 'returns message error' do
-        params[:user][:password] = 'wrong_password!'
-
         subject
 
         expect(response.body).to include_json(
