@@ -28,4 +28,6 @@ class User < ApplicationRecord
   include DeviseTokenAuth::Concerns::User
 
   validates :email, presence: true, uniqueness: true
+
+  has_many :targets, dependent: :destroy
 end

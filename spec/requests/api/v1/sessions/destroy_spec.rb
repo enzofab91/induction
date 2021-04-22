@@ -11,10 +11,16 @@ describe 'DELETE api/v1/users/sign_out', type: :request do
   end
 
   context 'when user is not logged in' do
-    let(:headers) { nil }
+    let(:auth_headers) { nil }
 
     it 'does not return a successful response' do
-      expect(response).to_not have_http_status(:success)
+      subject
+      expect(response).to have_http_status(:not_found)
+    end
+
+    it 'does have empty session keys' do
+      subject
+      expect(user.reload.tokens).to be_empty
     end
   end
 end
