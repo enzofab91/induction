@@ -3,6 +3,9 @@
 # Table name: users
 #
 #  id                     :bigint           not null, primary key
+#  confirmation_sent_at   :datetime
+#  confirmation_token     :string
+#  confirmed_at           :datetime
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
 #  gender                 :string(1)        default("")
