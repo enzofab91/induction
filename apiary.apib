@@ -192,6 +192,76 @@ FORMAT: 1A
               ]
             }
 
+# Group Targets [api/v1/targets/]
+
+## Get Targets [GET]
+
++ Request Bad
+
+    + Headers
+
+            Content-Type: application/json
+
+    + Body
+
++ Response 401
+
++ Request 200
+
+    + Headers
+
+            Content-Type: application/json
+            access-token: valid_token
+            client: client_id
+            uid: user@example.com
+
+    + Body
+
++ Response 200
+
+    + Body
+
+            "targets": [
+                {
+                  "target": {
+                    "id": 1,
+                    "title": "target title",
+                    "radius": "radius",
+                    "latitude": "latitude",
+                    "topic_id": "topic_id"
+                  }
+                }
+              ]
+            }
+
+## Create Target [POST]
+
++ Request Bad
+
+    + Headers
+
+    + Body
+
+            + Attributes(Target)
+
++ Response 401
+
++ Request 200
+
+    + Headers
+
+            Content-Type: application/json
+
+    + Body
+
+            + Attributes(Target)
+
++ Response 200
+
+    + Body
+
+            + Attributes(Target)
+
 ## Data Structures
 
 ### User (object)
@@ -203,3 +273,10 @@ FORMAT: 1A
 ### User_credentials (object)
 + email: user@example.com (required)
 + password: password (required)
+
+### Target (object)
++ title: target title (required)
++ radius: radius (required)
++ latitude: latitude (required)
++ longitude: longitude (required)
++ topic_id: topic_id (required)
