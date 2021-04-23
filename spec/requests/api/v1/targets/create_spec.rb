@@ -7,7 +7,7 @@ describe 'POST api/v1/targets', type: :request do
 
     let(:title)           { 'New target' }
     let(:radius)          { 300 }
-    let(:coordinates)     { Hash(latitude: -34.6037389, longitude: -58.3837591) }
+    let(:coordinates)     { { latitude: -34.6037389, longitude: -58.3837591 } }
     let(:longitude)       { 60.12 }
 
     let(:target_created)  { Target.last }
