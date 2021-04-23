@@ -1,4 +1,8 @@
+ENV['RAILS_ENV'] ||= 'test'
+require File.expand_path('../../config/environment', __FILE__)
+
 require 'helpers'
+require 'shoulda/matchers'
 
 RSpec.configure do |config|
   config.include Helpers

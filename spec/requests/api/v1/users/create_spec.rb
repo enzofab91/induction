@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 describe 'POST api/v1/users/', type: :request do
   subject { post user_registration_path, params: params, as: :json }
 
