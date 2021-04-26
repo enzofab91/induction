@@ -15,7 +15,7 @@ describe 'DELETE api/v1/users/sign_out', type: :request do
 
     it 'does not return a successful response' do
       subject
-      expect(response).to have_http_status(:not_found)
+      expect(response).to be_not_found
     end
 
     it 'does have empty session keys' do
