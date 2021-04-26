@@ -15,7 +15,7 @@ describe 'GET api/v1/targets', type: :request do
     expect(json[:targets].pluck([:id])).to match_array(targets.pluck([:id]))
   end
 
-  it 'does not returns other\'s users targets' do
+  it 'does not return other\'s users targets' do
     subject
     expect(json[:targets].pluck([:id])).not_to include(other_user_targets.pluck([:id]))
   end

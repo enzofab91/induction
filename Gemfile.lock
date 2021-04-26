@@ -349,7 +349,7 @@ DEPENDENCIES
   rubocop-rootstrap
   sass-rails (>= 6)
   selenium-webdriver
-  sendgrid-ruby
+  sendgrid-ruby (~> 6.4.0)
   shoulda-matchers (~> 3.1.1)
   spring
   turbolinks (~> 5)
