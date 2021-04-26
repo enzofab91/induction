@@ -20,7 +20,7 @@ describe 'POST api/v1/users/sign_in', type: :request do
       }
     end
 
-    let(:user) { create(:user, gender: gender, password: user_password, tokens: token) }
+    let(:user) { create(:user, gender: gender, password: user_password, tokens: token, confirmed_at: Time.zone.now) }
 
     let(:params) do
       {

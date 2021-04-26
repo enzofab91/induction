@@ -262,6 +262,42 @@ FORMAT: 1A
 
             + Attributes(Target)
 
+# Group Confirmations [api/v1/confirmations/]
+
+## Confirm email [GET]
+
++ Request Bad
+
+    + Headers
+
+    + Parameters
+
++ Response 404
+
+    + Body
+
+        {
+              "error": "Confirmation token can't be blank.",
+        }
+
++ Request 200
+
+    + Headers
+
+            Content-Type: application/json
+
+    + Parameters
+
+            + confirmation_token: token (required)
+
++ Response 200
+
+    + Body
+
+            {
+              message: "Your email address has been successfully confirmed."
+            }
+
 ## Data Structures
 
 ### User (object)

@@ -21,6 +21,8 @@ Layout/LineLength:
     - "config/**/*"
     - db/migrate/**/*
     - db/seeds.rb
+    - spec/factories/users.rb
+    - spec/requests/api/v1/**/*
 Rails/Delegate:
   Exclude:
     - app/controllers/api/concerns/act_as_api_request.rb

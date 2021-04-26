@@ -41,6 +41,12 @@ describe 'POST api/v1/users/', type: :request do
       expect(json[:user][:uid]).to eq(email)
     end
 
+    it 'adds confirmation email to queue' do
+      expect {
+        subject
+      }.to change(ActionMailer::Base.deliveries, :count).by(1)
+    end
+
     context 'when passwords dont match' do
       let(:password_confirmation) { '12345' }
 
