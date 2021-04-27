@@ -27,7 +27,9 @@
 #
 FactoryBot.define do
   factory :user do
-    email      { Faker::Internet.unique.email }
-    password   { Faker::Internet.password(min_length: 8) }
+    email               { Faker::Internet.unique.email }
+    password            { Faker::Internet.password(min_length: 8) }
+    confirmation_token  { Faker::Number.unique.number(digits: 10) }
+    confirmed_at        { Faker::Time.between_dates(from: 2.days.ago, to: Time.zone.now, period: :all) }
   end
 end
