@@ -18,9 +18,21 @@
 #  index_targets_on_user_id   (user_id)
 #
 class Target < ApplicationRecord
+  USER_MAX_TARGET_LIMIT = 10
+
   belongs_to :user
   belongs_to :topic
 
   validates :title, :latitude, :longitude, :radius, presence: true
   validates :radius, numericality: { greater_than: 0 }
+
+  validate :target_limit, on: :create
+
+  private
+
+  def target_limit
+    return unless user.targets.count == USER_MAX_TARGET_LIMIT
+
+    errors.add(:targets, I18n.t('api.errors.target_limit'))
+  end
 end

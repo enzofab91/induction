@@ -27,6 +27,21 @@ RSpec.describe Target, type: :model do
     it { is_expected.to validate_presence_of(:radius) }
     it { is_expected.to validate_presence_of(:latitude) }
     it { is_expected.to validate_presence_of(:longitude) }
+
+    describe 'amount of targets limit reached' do
+      let(:user) { create(:user) }
+      let!(:targets) { create_list(:target, Target::USER_MAX_TARGET_LIMIT, user_id: user.id) }
+      let(:target) { build(:target, user_id: user.id) }
+
+      it 'it does not create a new target' do
+        expect(target).to_not be_valid
+      end
+
+      it 'returns error message' do
+        target.valid?
+        expect(target.errors[:targets]).to include I18n.t('api.errors.target_limit')
+      end
+    end
   end
 
   describe 'associations' do
