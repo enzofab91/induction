@@ -21,7 +21,7 @@ describe 'DELETE api/v1/targets', type: :request do
     end
 
     context 'when target do not belongs to current user' do
-      let(:target_id)             { other_users_target.id }
+      let(:target_id) { other_users_target.id }
 
       it 'does not return a successful response' do
         subject
@@ -36,7 +36,7 @@ describe 'DELETE api/v1/targets', type: :request do
     end
 
     context 'for an unexisting target' do
-      let(:target_id)             { 'none' }
+      let(:target_id) { 'none' }
 
       it 'does not return a successful response' do
         subject
