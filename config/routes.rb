@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     namespace :v1, defaults: { format: :json } do
       resources :targets, only: %i[create index destroy]
       resources :topics, only: :index
+      resources :users, only: %i[show update]
     end
   end
 end

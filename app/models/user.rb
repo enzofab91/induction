@@ -8,11 +8,14 @@
 #  confirmed_at           :datetime
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
+#  first_name             :string           default("")
 #  gender                 :string(1)        default("")
+#  last_name              :string           default("")
 #  provider               :string           default("email"), not null
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
+#  targets_count          :integer
 #  tokens                 :json
 #  uid                    :string           default(""), not null
 #  created_at             :datetime         not null
