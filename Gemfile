@@ -6,6 +6,7 @@ gem 'aws-sdk-s3', '~> 1.75', require: false
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'devise'
 gem 'devise_token_auth'
+gem 'geokit-rails', '~> 2.3.2'
 gem 'jbuilder', '~> 2.7'
 gem 'pg', '~> 1.1'
 gem 'puma', '~> 5.0'
