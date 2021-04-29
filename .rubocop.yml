@@ -36,3 +36,6 @@ Metrics/BlockLength:
 Style/SymbolArray:
   Exclude:
     - config/**/*
+Style/ColonMethodCall:
+  Exclude:
+    - config/initializers/geokit_config.rb
