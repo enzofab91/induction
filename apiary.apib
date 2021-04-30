@@ -56,6 +56,73 @@ FORMAT: 1A
               }
             }
 
+# User [api/v1/users/:id]
+
+## Get User [GET]
+
++ Request Bad
+
+    + Headers
+
+        Content-Type: application/json
+
+    + Body
+
+        {
+                'errors':['You need to sign in or sign up before continuing.']
+        }
+
++ Response 404
+
++ Request 200
+
+    + Headers
+
+            Content-Type: application/json
+            access-token: valid_token
+            client: client_id
+            uid: user@example.com
+
++ Response 200
+
+    + Body
+
+            + Attributes(User)
+
+## Update User [PATCH]
+
++ Request Bad
+
+    + Headers
+
+        Content-Type: application/json
+
+    + Body
+        
+        {
+                'errors':['You need to sign in or sign up before continuing.']
+        }
+
++ Response 404
+
++ Request 200
+
+    + Headers
+
+            Content-Type: application/json
+            access-token: valid_token
+            client: client_id
+            uid: user@example.com
+
+    + Body
+                + Attributes(User)
+
++ Response 200
+
+    + Body
+
+            + Attributes(User)
+
 # Group Sessions [api/v1/users/sign_in]
 
 ## Sign in User [POST]
@@ -326,14 +393,15 @@ FORMAT: 1A
               message: "Your email address has been successfully confirmed."
             }
 
-## Da
- Structures
+## Data Structures
 
 ### User (object)
 + email: user@example.com (required)
 + password: password (required)
 + password_confirmation: password (required)
 + gender: M (required)
++ first_name: name
++ last_name: last name
 
 ### User_credentials (object)
 + email: user@example.com (required)
