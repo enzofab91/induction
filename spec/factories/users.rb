@@ -12,6 +12,7 @@
 #  gender                 :string(1)        default("")
 #  last_name              :string           default("")
 #  provider               :string           default("email"), not null
+#  push_token             :string
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string

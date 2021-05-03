@@ -46,7 +46,7 @@ describe 'POST api/v1/targets', type: :request do
     end
 
     context 'when matches with another target' do
-      let(:second_user)   { create(:user) }
+      let(:second_user)   { create(:user, push_token: [Faker::Number.number(20)]) }
       let!(:second_target) do
         create(
           :target,
@@ -60,6 +60,8 @@ describe 'POST api/v1/targets', type: :request do
       end
       let(:match_created) { Match.last }
 
+      let(:match_target) { Match.where(first_user_id: user.id).first }
+
       it 'creates the match' do
         expect {
           subject
@@ -69,19 +71,36 @@ describe 'POST api/v1/targets', type: :request do
       it 'returns the match id' do
         subject
 
-        expect(target_created.matches.first.id).to eq(match_created.id)
+        expect(match_target.id).to eq(match_created.id)
       end
 
       it 'returns the match current user' do
         subject
 
-        expect(target_created.matches.first.first_user_id).to eq(match_created.first_user_id)
+        expect(match_target.first_user_id).to eq(match_created.first_user_id)
       end
 
       it 'returns the match second user' do
         subject
 
-        expect(target_created.matches.first.second_user_id).to eq(match_created.second_user_id)
+        expect(match_target.second_user_id).to eq(match_created.second_user_id)
+      end
+
+      it 'sends push notification' do
+        allow(FcmService).to receive(:sent_notification)
+
+        subject
+
+        expected_message = {
+          name: match_created.second_user.first_name,
+          match_id: match_created.id
+        }
+
+        expect(FcmService).to have_received(:sent_notification).with(
+          [match_created.second_user.push_token],
+          I18n.t('api.notifications.new_match'),
+          expected_message
+        )
       end
     end
 

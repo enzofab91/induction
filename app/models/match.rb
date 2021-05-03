@@ -22,6 +22,24 @@ class Match < ApplicationRecord
 
   validate :users_are_different
 
+  def self.create_and_notify(targets, user_id)
+    targets.find_each do |target|
+      created_match = create!(first_user_id: user_id, second_user_id: target.user_id,
+                              target_id: target.id)
+      notify_match(created_match)
+    end
+  end
+
+  def self.notify_match(match)
+    second_user = match.second_user
+
+    data = Hash(name: second_user.first_name, match_id: match.id)
+
+    registration_ids = [second_user.push_token]
+
+    FcmService.sent_notification(registration_ids, I18n.t('api.notifications.new_match'), data)
+  end
+
   private
 
   def users_are_different

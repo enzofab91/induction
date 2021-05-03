@@ -51,12 +51,6 @@ class Target < ApplicationRecord
                     .where(topic_id: topic_id)
                     .where.not(user_id: user_id)
 
-    create_and_notify(targets)
-  end
-
-  def create_and_notify(targets)
-    targets.find_each do |target|
-      matches.create!(first_user_id: user_id, second_user_id: target.user_id, target_id: target.id)
-    end
+    Match.create_and_notify(targets, user_id)
   end
 end

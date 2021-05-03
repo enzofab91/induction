@@ -123,6 +123,10 @@ GEM
       railties (>= 5.0.0)
     faker (2.17.0)
       i18n (>= 1.6, < 2)
+    faraday (1.0.1)
+      multipart-post (>= 1.2, < 3)
+    fcm (1.0.2)
+      faraday (~> 1.0.0)
     ffi (1.15.0)
     geokit (1.13.1)
     geokit-rails (2.3.2)
@@ -150,6 +154,7 @@ GEM
     mini_mime (1.0.3)
     minitest (5.14.4)
     msgpack (1.4.2)
+    multipart-post (2.1.1)
     nio4r (2.5.7)
     nokogiri (1.11.3-arm64-darwin)
       racc (~> 1.4)
@@ -337,6 +342,7 @@ DEPENDENCIES
   devise_token_auth
   factory_bot_rails
   faker
+  fcm (~> 1.0.2)
   geokit-rails (~> 2.3.2)
   jbuilder (~> 2.7)
   listen (~> 3.3)
