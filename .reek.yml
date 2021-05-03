@@ -23,7 +23,9 @@ detectors:
     allow_calls: []
   FeatureEnvy:
     enabled: true
-    exclude: []
+    exclude: [
+      TargetsNearUserQuery#call
+    ]
   InstanceVariableAssumption:
     enabled: false
   IrresponsibleModule:

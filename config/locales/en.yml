@@ -11,5 +11,8 @@ en:
       invalid_content_type: Invalid content type header
       missing_param: A required param is missing
       not_found: Couldn't find the record
-      target_limit: Users target limit is #{Target::USER_MAX_TARGET_LIMIT} 
+      target_limit: Users target limit is %{Target::USER_MAX_TARGET_LIMIT} 
       match_same_user: Can't match a target with yourself
+
+    notifications:
+      new_match: You have a new match!

@@ -6,6 +6,7 @@ gem 'aws-sdk-s3', '~> 1.75', require: false
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'devise'
 gem 'devise_token_auth'
+gem 'fcm', '~> 1.0.2'
 gem 'geokit-rails', '~> 2.3.2'
 gem 'jbuilder', '~> 2.7'
 gem 'pg', '~> 1.1'
@@ -16,6 +17,7 @@ gem 'sendgrid-ruby', '~> 6.4.0'
 gem 'turbolinks', '~> 5'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'webpacker', '~> 5.0'
+gem 'yaaf', '~> 0.1.1'
 
 group :development, :test do
   gem 'pry-byebug', '~> 3.9', platform: :mri
