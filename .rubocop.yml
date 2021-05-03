@@ -39,3 +39,6 @@ Style/SymbolArray:
 Style/ColonMethodCall:
   Exclude:
     - config/initializers/geokit_config.rb
+Style/HashSyntax:
+  Exclude:
+    - app/models/target.rb

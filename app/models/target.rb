@@ -28,11 +28,35 @@ class Target < ApplicationRecord
 
   validate :target_limit, on: :create
 
+  acts_as_mappable :default_units => :meters,
+                   :default_formula => :sphere,
+                   :distance_field_name => :distance,
+                   :lat_column_name => :latitude,
+                   :lng_column_name => :longitude
+
+  after_create :create_matches
+
+  has_many :matches, dependent: :destroy
+
   private
 
   def target_limit
     return unless user.targets.count == USER_MAX_TARGET_LIMIT
 
     errors.add(:targets, I18n.t('api.errors.target_limit'))
+  end
+
+  def create_matches
+    targets = Target.within(radius, :origin => [latitude, longitude])
+                    .where(topic_id: topic_id)
+                    .where.not(user_id: user_id)
+
+    create_and_notify(targets)
+  end
+
+  def create_and_notify(targets)
+    targets.find_each do |target|
+      matches.create!(first_user_id: user_id, second_user_id: target.user_id, target_id: target.id)
+    end
   end
 end
