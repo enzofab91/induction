@@ -218,6 +218,107 @@ FORMAT: 1A
               "success": true
             }
 
+## Reset password [/api/v1/users/password]
+# Based on https://devise-token-auth.gitbook.io/devise-token-auth/usage/reset_password
+
+### Reset password [POST]
+
++ Request Bad
+
+    + Body
+        
+                {
+                        'email': 'user@example.com'
+                }
+
++ Response 401
+
++ Request 200
+
+    + Body
+
+                {
+                        'email': 'user@example.com',
+                        'redirect_url': 'http://www.example.com'
+                }
+
++ Response 200
+
+    + Body
+
+            {
+              'success': true,
+              'message': 'An email has been sent to \'user@example.com\' containing instructions for resetting your password.'
+            }
+
+### Reset password [PUT]
+
++ Request Bad
+
+        + Parameters
+                
+                + reset_password_token (string, required)
+
+        + Body
+
+            {
+              'password': 'new_password',
+              'password_confirmation': 'unmatching_password'
+            }
+
++ Response 401
+
++ Request 200
+
+        + Body
+
+            {
+              'password': 'new_password',
+              'password_confirmation': 'new_password'
+            }
+
++ Response 200
+
+    + Headers
+
+            access-token: valid_token
+            client: client_id
+            uid: user@example.com
+
+    + Body
+
+            {
+              'data':
+                {
+                  'email': 'user@example.com',
+                  'first_name": 'Test',
+                  'last_name": 'Test',
+                  'uid': uid
+                }
+            }
+
+## Edit reset password [/api/v1/users/password/edit]
+
+### Edit reset password [GET]
+
++ Request 200
+
+        + Headers
+                
+                Content-Type: application/json
+        
+        + Parameters
+
+                + reset_password_token (string, required)
+                + redirect_url (string, required)
+
++ Response 200
+    + Headers
+
+            access-token: valid_token
+            client: client_id
+            uid: user@example.com
+
 # Topic Collection [api/v1/topics/]
 
 ## Get Topics [GET]
