@@ -10,7 +10,7 @@ class MatchForm < ApplicationForm
   def save
     @match.save
 
-    notify_match
+    notify_match if match.persisted?
   end
 
   private
