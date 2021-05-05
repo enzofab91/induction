@@ -23,6 +23,7 @@ Layout/LineLength:
     - db/seeds.rb
     - spec/factories/users.rb
     - spec/requests/api/v1/**/*
+    - app/services/fcm_service.rb
 Rails/Delegate:
   Exclude:
     - app/controllers/api/concerns/act_as_api_request.rb
@@ -36,3 +37,13 @@ Metrics/BlockLength:
 Style/SymbolArray:
   Exclude:
     - config/**/*
+Style/ColonMethodCall:
+  Exclude:
+    - config/initializers/geokit_config.rb
+Style/HashSyntax:
+  Exclude:
+    - app/models/target.rb
+Rails/SaveBang:
+  Exclude:
+    - app/forms/**/*
+    - app/models/**/*
