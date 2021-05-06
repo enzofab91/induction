@@ -47,10 +47,13 @@ class Target < ApplicationRecord
   end
 
   def create_matches
-    targets = Target.within(radius, :origin => [latitude, longitude])
-                    .where(topic_id: topic_id)
-                    .where.not(user_id: user_id)
+    target_query = TargetsNearUserQuery.new
+    targets = target_query.call(self)
 
-    Match.create_and_notify(targets, user_id)
+    targets.find_each do |target|
+      new_match = Hash(first_user_id: user_id, second_user_id: target.user_id, target_id: target.id)
+      match_form = MatchForm.new(match_attributes: new_match)
+      match_form.save
+    end
   end
 end

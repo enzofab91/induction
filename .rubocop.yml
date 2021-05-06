@@ -43,3 +43,7 @@ Style/ColonMethodCall:
 Style/HashSyntax:
   Exclude:
     - app/models/target.rb
+Rails/SaveBang:
+  Exclude:
+    - app/forms/**/*
+    - app/models/**/*

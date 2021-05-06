@@ -105,10 +105,6 @@ describe 'POST api/v1/targets', type: :request do
     end
 
     context 'when can not match with any target' do
-      let(:second_user)   { create(:user) }
-      let!(:second_target) { create(:target, title: 'Buquebus', latitude: -34.5970766, longitude: -58.3705256, radius: 600, topic: topic, user: second_user) }
-      let(:match_created)  { Match.last }
-
       it 'does not create the match' do
         expect {
           subject

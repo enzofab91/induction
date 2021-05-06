@@ -17,6 +17,7 @@ gem 'sendgrid-ruby', '~> 6.4.0'
 gem 'turbolinks', '~> 5'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'webpacker', '~> 5.0'
+gem 'yaaf', '~> 0.1.1'
 
 group :development, :test do
   gem 'pry-byebug', '~> 3.9', platform: :mri
