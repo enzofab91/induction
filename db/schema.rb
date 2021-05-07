@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_04_205611) do
+ActiveRecord::Schema.define(version: 2021_05_06_141846) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "conversations", force: :cascade do |t|
+    t.bigint "match_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["match_id"], name: "index_conversations_on_match_id"
+  end
 
   create_table "matches", force: :cascade do |t|
     t.bigint "first_user_id", null: false
@@ -46,6 +53,15 @@ ActiveRecord::Schema.define(version: 2021_05_04_205611) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "user_conversations", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "conversation_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["conversation_id"], name: "index_user_conversations_on_conversation_id"
+    t.index ["user_id"], name: "index_user_conversations_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -72,4 +88,7 @@ ActiveRecord::Schema.define(version: 2021_05_04_205611) do
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
+  add_foreign_key "conversations", "matches"
+  add_foreign_key "user_conversations", "conversations"
+  add_foreign_key "user_conversations", "users"
 end

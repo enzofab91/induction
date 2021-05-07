@@ -8,9 +8,10 @@ class MatchForm < ApplicationForm
   end
 
   def save
-    @match.save
+    return unless @match.save
 
-    notify_match if match.persisted?
+    notify_match
+    create_conversation
   end
 
   private
@@ -27,5 +28,9 @@ class MatchForm < ApplicationForm
     registration_ids = [second_user.push_token]
 
     FcmService.sent_notification(registration_ids, I18n.t('api.notifications.new_match'), data)
+  end
+
+  def create_conversation
+    Conversation.create!(match_id: match.id)
   end
 end
