@@ -494,6 +494,45 @@ FORMAT: 1A
               message: "Your email address has been successfully confirmed."
             }
 
+# Conversation Collection [api/v1/conversations/]
+
+## Get Conversations [GET]
+
++ Request Bad
+
+    + Headers
+
+            Content-Type: application/json
+
+    + Body
+
++ Response 401
+
++ Request 200
+
+    + Headers
+
+            Content-Type: application/json
+            access-token: valid_token
+            client: client_id
+            uid: user@example.com
+
+    + Body
+
++ Response 200
+
+    + Body
+
+            "conversations": [
+                {
+                  "conversations": {
+                    "id": 1,
+                    "match_id": "match_id"
+                  }
+                }
+              ]
+            }
+
 ## Data Structures
 
 ### User (object)

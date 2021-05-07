@@ -39,4 +39,6 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true
 
   has_many :targets, dependent: :destroy
+  has_many :user_conversations, dependent: :destroy
+  has_many :conversations, through: :user_conversations, dependent: :destroy
 end
