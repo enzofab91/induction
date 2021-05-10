@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_06_141846) do
+ActiveRecord::Schema.define(version: 2021_05_07_192523) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,16 @@ ActiveRecord::Schema.define(version: 2021_05_06_141846) do
     t.index ["first_user_id"], name: "index_matches_on_first_user_id"
     t.index ["second_user_id"], name: "index_matches_on_second_user_id"
     t.index ["target_id"], name: "index_matches_on_target_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.string "body", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "conversation_id", null: false
+    t.bigint "user_id", null: false
+    t.index ["conversation_id"], name: "index_messages_on_conversation_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
   create_table "targets", force: :cascade do |t|
@@ -89,6 +99,8 @@ ActiveRecord::Schema.define(version: 2021_05_06_141846) do
   end
 
   add_foreign_key "conversations", "matches"
+  add_foreign_key "messages", "conversations"
+  add_foreign_key "messages", "users"
   add_foreign_key "user_conversations", "conversations"
   add_foreign_key "user_conversations", "users"
 end

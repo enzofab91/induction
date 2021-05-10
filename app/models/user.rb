@@ -41,4 +41,6 @@ class User < ApplicationRecord
   has_many :targets, dependent: :destroy
   has_many :user_conversations, dependent: :destroy
   has_many :conversations, through: :user_conversations, dependent: :destroy
+
+  has_many :messages, dependent: :destroy
 end
