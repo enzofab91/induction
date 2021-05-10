@@ -14,10 +14,10 @@ jobs:
     - uses: actions/checkout@v2
     # specify the version you desire here
     # https://github.com/ruby/setup-ruby
-    - name: Set up Ruby 3.0.1
+    - name: Set up Ruby 3.0.0
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: 3.0.1
+        ruby-version: 3.0.0
     # Check installed Ruby version
     - name: Check Ruby version
       run: |
