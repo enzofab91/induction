@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '3.0.1'
+ruby '3.0.0'
 
 gem 'aws-sdk-s3', '~> 1.75', require: false
 gem 'bootsnap', '>= 1.4.4', require: false
