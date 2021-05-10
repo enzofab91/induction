@@ -18,9 +18,7 @@
 #  fk_rails_...  (conversation_id => conversations.id)
 #  fk_rails_...  (user_id => users.id)
 #
-require 'rails_helper'
-
-RSpec.describe UserConversation, type: :model do
+describe UserConversation, type: :model do
   describe 'associations' do
     it { should belong_to(:user) }
     it { should belong_to(:conversation) }

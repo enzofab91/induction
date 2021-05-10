@@ -17,7 +17,7 @@
 #
 require 'rails_helper'
 
-RSpec.describe Conversation, type: :model do
+describe Conversation, type: :model do
   describe 'validations' do
     let(:target) { create(:target) }
     let(:first_user) { create(:user) }

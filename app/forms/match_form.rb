@@ -8,10 +8,8 @@ class MatchForm < ApplicationForm
   end
 
   def save
-    @match.save
-
-    return unless match.persisted?
-
+    return unless @match.save
+    
     notify_match
     create_conversation
   end
@@ -33,6 +31,6 @@ class MatchForm < ApplicationForm
   end
 
   def create_conversation
-    Conversation.create!(Hash(match_id: match.id))
+    Conversation.create!(match_id: match.id)
   end
 end

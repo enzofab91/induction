@@ -11,7 +11,6 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 2021_05_07_192523) do
-
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -99,8 +98,11 @@ ActiveRecord::Schema.define(version: 2021_05_07_192523) do
   end
 
   add_foreign_key "conversations", "matches"
+<<<<<<< HEAD
   add_foreign_key "messages", "conversations"
   add_foreign_key "messages", "users"
+=======
+>>>>>>> f47d9216efb28b5f371e1c3db1143393d24f5373
   add_foreign_key "user_conversations", "conversations"
   add_foreign_key "user_conversations", "users"
 end

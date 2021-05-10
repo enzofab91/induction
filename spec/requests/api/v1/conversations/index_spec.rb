@@ -1,10 +1,10 @@
 describe 'GET api/v1/conversations', type: :request do
-  let(:target) { create :target }
-  let(:user) { create :user }
-  let(:second_user) { create :user }
+  let(:target) { create(:target) }
+  let(:user) { create(:user) }
+  let(:second_user) { create(:user) }
   let(:match) { build(:match, first_user_id: user.id, second_user_id: second_user.id, target_id: target.id) }
   let!(:conversations) { create_list :conversation, 1, match: match }
-  let!(:other_user_conversations) { create_list :conversation, 2 }
+  let!(:other_user_conversations) { create_list(:conversation, 2) }
 
   subject { get api_v1_conversations_path, headers: auth_headers, as: :json }
 
