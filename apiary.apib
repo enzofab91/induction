@@ -532,6 +532,40 @@ FORMAT: 1A
                 }
               ]
 
+# Messages Collection
+
+### Get Messages [GET] [/api/v1/conversations/{id}/messages]
+
++ Request Bad
+
+    + Headers
+
+            Content-Type: application/json
+
++ Response 401
+
++ Request 200
+
+    + Headers
+
+            Content-Type: application/json
+            access-token: valid_token
+            client: client_id
+            uid: user@example.com
+
++ Response 200 (application/json)
+    + Body
+
+            {
+                "messages": [
+                    {
+                        "id": 1,
+                        "body": "new message",
+                        "user_id": 1
+                    }
+                ]
+            }
+
 ## Data Structures
 
 ### User (object)

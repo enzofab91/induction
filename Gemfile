@@ -20,6 +20,7 @@ gem 'webpacker', '~> 5.0'
 gem 'yaaf', '~> 0.1.1'
 
 group :development, :test do
+  gem 'action-cable-testing', '~> 0.6.1'
   gem 'pry-byebug', '~> 3.9', platform: :mri
   gem 'pry-rails', '~> 0.3.9'
 end

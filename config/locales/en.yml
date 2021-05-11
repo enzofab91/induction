@@ -14,6 +14,7 @@ en:
       target_limit: Users target limit is %{Target::USER_MAX_TARGET_LIMIT} 
       match_same_user: Can't match a target with yourself
       uniqueness_conversation: Can't create conversation for the same match twice
+      message_empty: The message can't be empty
 
     notifications:
       new_match: You have a new match!

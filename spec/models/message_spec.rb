@@ -19,8 +19,15 @@
 #  fk_rails_...  (conversation_id => conversations.id)
 #  fk_rails_...  (user_id => users.id)
 #
-require 'rails_helper'
+describe Message, type: :model do
+  subject(:message) { build :message }
 
-RSpec.describe Message, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'validations' do
+    it { is_expected.to validate_presence_of(:body) }
+  end
+
+  describe 'associations' do
+    it { should belong_to(:conversation) }
+    it { should belong_to(:user) }
+  end
 end

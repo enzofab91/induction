@@ -20,7 +20,7 @@ class Conversation < ApplicationRecord
 
   has_many :user_conversations, dependent: :destroy
   has_many :users, through: :user_conversations
-  has_many :messages, dependant: destroy
+  has_many :messages, dependent: :destroy
 
   after_create :add_users_to_conversation
 

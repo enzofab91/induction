@@ -24,4 +24,18 @@ class Message < ApplicationRecord
   belongs_to :user
 
   validates :body, presence: true
+
+  after_create_commit :broadcast_message
+
+  private
+
+  def broadcast_message
+    ConversationChannel.broadcast_to(conversation, render_body(body))
+  end
+
+  def render_body(body)
+    {
+      body: body
+    }
+  end
 end

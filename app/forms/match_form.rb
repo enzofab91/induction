@@ -9,7 +9,7 @@ class MatchForm < ApplicationForm
 
   def save
     return unless @match.save
-    
+
     notify_match
     create_conversation
   end
