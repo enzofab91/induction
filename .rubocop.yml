@@ -24,6 +24,7 @@ Layout/LineLength:
     - spec/factories/users.rb
     - spec/requests/api/v1/**/*
     - spec/models/**/*
+    - spec/channels/**/*
     - app/services/fcm_service.rb
 Rails/Delegate:
   Exclude:
