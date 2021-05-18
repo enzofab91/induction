@@ -27,6 +27,8 @@ class Message < ApplicationRecord
 
   after_create_commit :broadcast_message
 
+  paginates_per 10
+
   private
 
   def broadcast_message
