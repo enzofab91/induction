@@ -26,6 +26,7 @@ Layout/LineLength:
     - spec/models/**/*
     - spec/channels/**/*
     - app/services/fcm_service.rb
+    - app/models/message.rb
 Rails/Delegate:
   Exclude:
     - app/controllers/api/concerns/act_as_api_request.rb
@@ -49,3 +50,6 @@ Rails/SaveBang:
   Exclude:
     - app/forms/**/*
     - app/models/**/*
+Rails/Blank:
+  Exclude:
+    - app/models/message.rb
