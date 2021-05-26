@@ -26,6 +26,10 @@ class Conversation < ApplicationRecord
 
   validate :users_uniqueness, on: :create
 
+  def recipient_user(user)
+    users.where.not(id: user.id)&.first
+  end
+
   private
 
   def add_users_to_conversation

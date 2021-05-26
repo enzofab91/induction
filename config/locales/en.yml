@@ -18,3 +18,4 @@ en:
 
     notifications:
       new_match: You have a new match!
+      new_message: You have a new message!

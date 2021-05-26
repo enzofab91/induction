@@ -26,6 +26,7 @@ class Message < ApplicationRecord
   validates :body, presence: true
 
   after_create_commit :broadcast_message
+  after_create_commit :notify_user
 
   paginates_per 10
 
@@ -39,5 +40,15 @@ class Message < ApplicationRecord
     {
       body: body
     }
+  end
+
+  def notify_user
+    return unless receiver_push_token.present?
+
+    FcmService.sent_notification([receiver_push_token], I18n.t('api.notifications.new_message'), body)
+  end
+
+  def receiver_push_token
+    conversation.recipient_user(user).push_token
   end
 end

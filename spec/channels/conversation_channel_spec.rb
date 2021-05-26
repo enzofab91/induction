@@ -39,5 +39,17 @@ describe ConversationChannel, type: :channel do
         subject
       }.to have_broadcasted_to(conversation).with(body: message).from_channel(ConversationChannel)
     end
+
+    it 'sends a push notification to the other user' do
+      allow(FcmService).to receive(:sent_notification)
+
+      subject
+
+      expect(FcmService).to have_received(:sent_notification).with(
+        [second_user.push_token],
+        I18n.t('api.notifications.new_message'),
+        message
+      )
+    end
   end
 end
