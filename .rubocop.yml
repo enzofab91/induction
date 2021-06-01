@@ -53,3 +53,6 @@ Rails/SaveBang:
 Rails/Blank:
   Exclude:
     - app/models/message.rb
+Rails/EnvironmentVariableAccess:
+  Exclude:
+    - app/services/fcm_service.rb
