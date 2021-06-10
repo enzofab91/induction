@@ -38,4 +38,8 @@ RSpec.describe User, type: :model do
   it 'email is present' do
     expect(user.email).to be_present
   end
+
+  it 'profile photo is an active storage instance' do
+    expect(user.photo).to be_an_instance_of(ActiveStorage::Attached::One)
+  end
 end
