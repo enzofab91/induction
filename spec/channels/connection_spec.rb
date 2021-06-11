@@ -1,6 +1,4 @@
-require 'rails_helper'
-
-RSpec.describe ApplicationCable::Connection, type: :channel do
+describe ApplicationCable::Connection, type: :channel do
   let(:user) { create(:user) }
 
   it 'successfully connects to cable' do

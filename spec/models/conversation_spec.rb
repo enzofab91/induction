@@ -15,8 +15,6 @@
 #
 #  fk_rails_...  (match_id => matches.id)
 #
-require 'rails_helper'
-
 describe Conversation, type: :model do
   describe 'validations' do
     let(:target) { create(:target) }

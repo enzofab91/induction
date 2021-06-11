@@ -15,9 +15,7 @@
 #  index_matches_on_second_user_id  (second_user_id)
 #  index_matches_on_target_id       (target_id)
 #
-require 'rails_helper'
-
-RSpec.describe Match, type: :model do
+describe Match, type: :model do
   subject(:match) { build :match }
 
   describe 'validations' do
