@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 describe 'GET api/v1/conversations/{id}/messages', type: :request do
   let(:user) { create(:user) }
   let(:second_user) { create(:user) }
