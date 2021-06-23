@@ -81,13 +81,13 @@ GEM
       ruby2_keywords (>= 0.0.2, < 1.0)
     ast (2.4.2)
     aws-eventstream (1.1.1)
-    aws-partitions (1.470.0)
-    aws-sdk-core (3.114.3)
+    aws-partitions (1.466.0)
+    aws-sdk-core (3.114.2)
       aws-eventstream (~> 1, >= 1.0.2)
       aws-partitions (~> 1, >= 1.239.0)
       aws-sigv4 (~> 1.1)
       jmespath (~> 1.0)
-    aws-sdk-kms (1.44.0)
+    aws-sdk-kms (1.43.0)
       aws-sdk-core (~> 3, >= 3.112.0)
       aws-sigv4 (~> 1.1)
     aws-sdk-s3 (1.96.1)
@@ -152,7 +152,7 @@ GEM
     faraday-net_http_persistent (1.1.0)
     fcm (1.0.3)
       faraday (~> 1)
-    ffi (1.15.3)
+    ffi (1.15.1)
     formtastic (4.0.0)
       actionpack (>= 5.2.0)
     formtastic_i18n (0.7.0)
@@ -210,6 +210,8 @@ GEM
     nio4r (2.5.7)
     nokogiri (1.11.7-arm64-darwin)
       racc (~> 1.4)
+    nokogiri (1.11.7-x86_64-linux)
+      racc (~> 1.4)
     orm_adapter (0.5.0)
     parallel (1.20.1)
     parser (3.0.1.1)
@@ -255,7 +257,7 @@ GEM
       nokogiri (>= 1.6)
     rails-html-sanitizer (1.3.0)
       loofah (~> 2.3)
-    rails_best_practices (1.21.0)
+    rails_best_practices (1.20.1)
       activesupport
       code_analyzer (>= 0.5.2)
       erubis
@@ -307,7 +309,7 @@ GEM
       rspec-mocks (~> 3.10)
       rspec-support (~> 3.10)
     rspec-support (3.10.2)
-    rubocop (1.17.0)
+    rubocop (1.16.1)
       parallel (~> 1.10)
       parser (>= 3.0.0.0)
       rainbow (>= 2.2.2, < 4.0)
@@ -318,7 +320,7 @@ GEM
       unicode-display_width (>= 1.4.0, < 3.0)
     rubocop-ast (1.7.0)
       parser (>= 3.0.1.1)
-    rubocop-rails (2.11.0)
+    rubocop-rails (2.10.1)
       activesupport (>= 4.2.0)
       rack (>= 1.1)
       rubocop (>= 1.7.0, < 2.0)
@@ -379,7 +381,7 @@ GEM
       rack-proxy (>= 0.6.1)
       railties (>= 5.2)
       semantic_range (>= 2.3.0)
-    websocket-driver (0.7.5)
+    websocket-driver (0.7.4)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
     xpath (3.2.0)
@@ -391,6 +393,7 @@ GEM
 
 PLATFORMS
   arm64-darwin-20
+  x86_64-linux
 
 DEPENDENCIES
   action-cable-testing (~> 0.6.1)
@@ -417,6 +420,7 @@ DEPENDENCIES
   rails (~> 6.1.3, >= 6.1.3.1)
   rails_best_practices
   reek
+  rexml
   rspec-json_expectations
   rspec-rails (~> 5.0.0)
   rubocop-rails

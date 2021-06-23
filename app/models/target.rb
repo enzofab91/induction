@@ -38,6 +38,10 @@ class Target < ApplicationRecord
 
   has_many :matches, dependent: :destroy
 
+  def expired?
+    created_at + 7 < Time.zone.now
+  end
+
   private
 
   def target_limit

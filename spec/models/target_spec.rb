@@ -17,9 +17,7 @@
 #  index_targets_on_topic_id  (topic_id)
 #  index_targets_on_user_id   (user_id)
 #
-require 'rails_helper'
-
-RSpec.describe Target, type: :model do
+describe Target, type: :model do
   describe 'validations' do
     subject(:target) { build :target }
 

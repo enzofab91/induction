@@ -30,9 +30,7 @@
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #  index_users_on_uid_and_provider      (uid,provider) UNIQUE
 #
-require 'rails_helper'
-
-RSpec.describe User, type: :model do
+describe User, type: :model do
   let(:user) { build :user }
 
   it 'email is present' do
