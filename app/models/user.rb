@@ -42,4 +42,24 @@ class User < ApplicationRecord
   has_many :user_conversations, dependent: :destroy
   has_many :conversations, through: :user_conversations, dependent: :destroy
   has_many :messages, dependent: :destroy
+
+  has_one_attached :photo
+
+  def photo_url
+    return unless photo.attached?
+
+    Rails
+      .application
+      .routes
+      .url_helpers
+      .rails_blob_url(photo, disposition: 'attachment')
+  end
+
+  # :reek:FeatureEnvy
+  def update!(user_params)
+    photo.attach(
+      io: File.open(user_params[:photo_io]),
+      filename: user_params[:photo_filename]
+    )
+  end
 end
