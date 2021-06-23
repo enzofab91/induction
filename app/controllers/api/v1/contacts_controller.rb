@@ -4,7 +4,8 @@ module Api
       skip_before_action :authenticate_user!
 
       def create
-        Contact.create!(contacts_params)
+        contact = Contact.create!(contacts_params)
+        AdminMailer.new_contact_question(contact)
         head :ok
       end
 
