@@ -56,3 +56,6 @@ Rails/Blank:
 Rails/EnvironmentVariableAccess:
   Exclude:
     - app/services/fcm_service.rb
+Metrics/MethodLength:
+  Exclude:
+    - db/migrate/**/*
