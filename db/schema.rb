@@ -74,6 +74,13 @@ ActiveRecord::Schema.define(version: 2021_06_22_180424) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "contacts", force: :cascade do |t|
+    t.string "body", null: false
+    t.string "email", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "conversations", force: :cascade do |t|
     t.bigint "match_id", null: false
     t.datetime "created_at", precision: 6, null: false

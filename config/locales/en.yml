@@ -19,3 +19,7 @@ en:
     notifications:
       new_match: You have a new match!
       new_message: You have a new message!
+  mailer:
+    admin:
+      new_question: You have a new contact question!
+      new_question_body: New question from
