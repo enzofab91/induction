@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_22_180424) do
+ActiveRecord::Schema.define(version: 2021_06_23_173349) do
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -59,6 +60,8 @@ ActiveRecord::Schema.define(version: 2021_06_22_180424) do
   create_table "active_storage_variant_records", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
@@ -153,7 +156,7 @@ ActiveRecord::Schema.define(version: 2021_06_22_180424) do
     t.string "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
-    t.integer "targets_count"
+    t.integer "targets_count", default: 0, null: false
     t.string "first_name", default: ""
     t.string "last_name", default: ""
     t.string "push_token"
@@ -167,6 +170,7 @@ ActiveRecord::Schema.define(version: 2021_06_22_180424) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "conversations", "matches"
+  add_foreign_key "matches", "targets"
   add_foreign_key "messages", "conversations"
   add_foreign_key "messages", "users"
   add_foreign_key "user_conversations", "conversations"
