@@ -566,6 +566,28 @@ FORMAT: 1A
                 ]
             }
 
+# About Collection
+
+### Get About [GET] [/api/v1/about/]
+
++ Request 200
+
+    + Headers
+
+            Content-Type: application/json
+
++ Response 200 (application/json)
+    + Body
+
+            {
+                "about": [
+                    {
+                        "id": 1,
+                        "body": "about section"
+                    }
+                ]
+            }
+
 ## Data Structures
 
 ### User (object)
