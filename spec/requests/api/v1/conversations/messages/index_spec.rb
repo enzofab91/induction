@@ -4,7 +4,7 @@ describe 'GET api/v1/conversations/{id}/messages', type: :request do
   let(:other_user) { create(:user) }
   let(:match) { create(:match, first_user: user, second_user: second_user) }
   let(:other_match) { create(:match, first_user: user, second_user: other_user) }
-  let(:conversation) { create(:conversation, users: [user, second_user], match: match) }
+  let(:conversation) { create(:conversation, users: [user, second_user], match: match, first_user_unread_messages: 3) }
   let!(:messages) do
     create_list(:message, 3, user: user, conversation: conversation)
   end
@@ -29,6 +29,11 @@ describe 'GET api/v1/conversations/{id}/messages', type: :request do
 
   it 'returns the body of each one' do
     expect(json[:messages].pluck([:body])).to match_array(messages.pluck([:body]))
+  end
+
+  it 'mark messages as read' do
+    conversation.reload
+    expect(conversation.first_user_unread_messages).to eq(0)
   end
 
   it 'does not return other\'s users conversations messages' do

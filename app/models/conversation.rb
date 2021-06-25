@@ -2,10 +2,12 @@
 #
 # Table name: conversations
 #
-#  id         :bigint           not null, primary key
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  match_id   :bigint           not null
+#  id                          :bigint           not null, primary key
+#  first_user_unread_messages  :integer          default(0)
+#  second_user_unread_messages :integer          default(0)
+#  created_at                  :datetime         not null
+#  updated_at                  :datetime         not null
+#  match_id                    :bigint           not null
 #
 # Indexes
 #
@@ -30,10 +32,34 @@ class Conversation < ApplicationRecord
     users.where.not(id: user.id)&.first
   end
 
+  def mark_messages_as_read(user)
+    if first?(user)
+      update!(first_user_unread_messages: 0)
+    else
+      update!(second_user_unread_messages: 0)
+    end
+  end
+
+  def new_messages_count(user)
+    first?(user) ? first_user_unread_messages : second_user_unread_messages
+  end
+
+  def increase_unread(user)
+    if first?(user)
+      update!(first_user_unread_messages: first_user_unread_messages + 1)
+    else
+      update!(second_user_unread_messages: second_user_unread_messages + 1)
+    end
+  end
+
   private
 
   def add_users_to_conversation
     users << [match.first_user, match.second_user]
+  end
+
+  def first?(user)
+    match.first_user == user
   end
 
   def users_uniqueness

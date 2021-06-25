@@ -51,5 +51,11 @@ describe ConversationChannel, type: :channel do
         message
       )
     end
+
+    it 'increases messages unread count' do
+      subject
+      conversation.reload
+      expect(conversation.first_user_unread_messages).to eq(1)
+    end
   end
 end
