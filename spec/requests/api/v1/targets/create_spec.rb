@@ -2,14 +2,14 @@ describe 'POST api/v1/targets', type: :request do
   subject { post api_v1_targets_path, params: params, headers: auth_headers, as: :json }
 
   describe 'POST create' do
-    let(:user)          { create :user }
-    let(:topic)         { create :topic }
+    let(:user)               { create :user }
+    let(:topic)              { create :topic }
 
-    let(:title)           { 'New target' }
-    let(:radius)          { 300 }
-    let(:coordinates)     { { latitude: -34.6037389, longitude: -58.3837591 } }
-
-    let(:target_created)  { Target.last }
+    let(:title)              { 'New target' }
+    let(:radius)             { 300 }
+    let(:coordinates)        { { latitude: -34.6037389, longitude: -58.3837591 } }
+    let(:notifications_path) { 'https://fcm.googleapis.com/fcm/send' }
+    let(:target_created)     { Target.last }
 
     let(:params) do
       {
@@ -21,6 +21,11 @@ describe 'POST api/v1/targets', type: :request do
           topic_id: topic.id
         }
       }
+    end
+
+    before do
+      stub_request(:post, notifications_path)
+        .to_return(status: 200, body: '')
     end
 
     it 'returns a successful response' do
