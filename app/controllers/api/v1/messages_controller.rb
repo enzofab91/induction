@@ -3,6 +3,7 @@ module Api
     class MessagesController < Api::V1::ApiController
       def index
         @messages = conversation.messages.page(page)
+        conversation.mark_messages_as_read(current_user)
       end
 
       private

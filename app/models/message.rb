@@ -34,6 +34,7 @@ class Message < ApplicationRecord
 
   def broadcast_message
     ConversationChannel.broadcast_to(conversation, render_body(body))
+    conversation.increase_unread(user)
   end
 
   def render_body(body)

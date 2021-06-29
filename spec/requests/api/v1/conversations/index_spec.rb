@@ -18,6 +18,11 @@ describe 'GET api/v1/conversations', type: :request do
     expect(json[:conversations].pluck([:id])).to match_array(conversations.pluck([:id]))
   end
 
+  it 'returns user unread messages' do
+    subject
+    expect(json[:conversations].pluck([:new_messages_count])).to match_array(conversations.pluck([:new_messages_count]))
+  end
+
   it 'does not return other\'s users conversations' do
     subject
     expect(json[:conversations].pluck([:id])).not_to include(other_user_conversations.pluck([:id]))
