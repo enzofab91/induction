@@ -11,6 +11,7 @@ gem 'fcm', '~> 1.0.2'
 gem 'geokit-rails', '~> 2.3.2'
 gem 'jbuilder', '~> 2.7'
 gem 'kaminari', '~> 1.2.1'
+gem 'koala', '~> 3.0.0'
 gem 'pg', '~> 1.1'
 gem 'puma', '~> 5.0'
 gem 'rails', '~> 6.1.3', '>= 6.1.3.1'
@@ -47,6 +48,7 @@ group :test do
   gem 'selenium-webdriver'
   gem 'shoulda-matchers', '~> 3.1.1'
   gem 'webdrivers'
+  gem 'webmock', '~> 3.13.0'
 end
 
 group :test, :development do

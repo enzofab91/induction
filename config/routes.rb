@@ -12,7 +12,13 @@ Rails.application.routes.draw do
     namespace :v1, defaults: { format: :json } do
       resources :targets, only: %i[create index destroy]
       resources :topics, only: :index
-      resources :users, only: %i[show update]
+      devise_scope :user do
+        resources :users, only: %i[show update] do
+          controller :sessions do
+            post :facebook, on: :collection
+          end
+        end
+      end
       resources :about, only: %i[index]
       resources :contacts, only: %i[create]
       resources :conversations, only: :index do

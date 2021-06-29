@@ -5,6 +5,7 @@ describe ConversationChannel, type: :channel do
   let!(:conversation) { create(:conversation, users: [first_user, second_user], match: match) }
   let(:message)       { 'Hello World' }
   let(:action_cable)  { ActionCable.server }
+  let(:notifications_path) { 'https://fcm.googleapis.com/fcm/send' }
 
   let(:params) do
     {
@@ -17,6 +18,9 @@ describe ConversationChannel, type: :channel do
   before do
     # initialize connection with identifiers
     stub_connection current_user: :first_user
+
+    stub_request(:post, notifications_path)
+      .to_return(status: 200, body: '')
 
     subscribe(params)
   end

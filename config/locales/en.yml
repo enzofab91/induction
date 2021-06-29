@@ -15,6 +15,8 @@ en:
       match_same_user: Can't match a target with yourself
       uniqueness_conversation: Can't create conversation for the same match twice
       message_empty: The message can't be empty
+      facebook_not_authorized: Not Authorized
+      facebook_user_exists: User already registered with email/password
 
     notifications:
       new_match: You have a new match!

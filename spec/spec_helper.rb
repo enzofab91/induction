@@ -3,6 +3,7 @@ require File.expand_path('../../config/environment', __FILE__)
 
 require 'helpers'
 require 'shoulda/matchers'
+require 'webmock/rspec'
 
 RSpec.configure do |config|
   config.include Helpers
